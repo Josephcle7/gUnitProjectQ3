@@ -1,7 +1,7 @@
 mport org.jibble.pircbot.*;
 import java.util.Random;
 
-public class Botchu extends PircBot {
+public class Gbot extends PircBot {
 	
 	public Botchu() {
 		this.setName("Gbot");
