@@ -5,18 +5,42 @@
  */
 
 package musicbot;
-
+import musicbot.Synth ;
+import org.jibble.pircbot.* ;
 /**
  *
  * @author Josh
  */
-public class MusicBot {
+public class MusicBot extends PircBot {
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
+
+    public MusicBot() {
+        this.setName("MusicBot") ;
         // TODO code application logic here
     }
     
+    @Override
+    public void onMessage (String channel, String sender, String login, String
+            hostname, String message) {
+        Synth synth = new Synth() ;
+        if(message.equalsIgnoreCase(":start")) {
+            String time = new java.util.Date().toString() ;
+            sendMessage(channel, sender + ": The time is now " + time) ;
+            
+            synth.openSynth() ;
+            
+        }
+        else if(message.equalsIgnoreCase(":stop")) {
+            synth.stop() ;
+            
+
+        }
+        else if(message.equalsIgnoreCase(":time")) {
+            sendMessage(channel, "hahahaha I won't tell you...") ;
+        }
+        
+        else {
+            sendMessage(channel, "THIS IS NOT THE TIME TO USE THAT YET") ;
+        }
+    }
 }
