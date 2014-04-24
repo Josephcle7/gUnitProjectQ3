@@ -4,6 +4,7 @@ import java.awt.GridLayout;
 
 import javax.swing.JApplet;
 import javax.swing.JPanel;
+import java.util.concurrent.*;
 
 import com.jsyn.JSyn;
 import com.jsyn.Synthesizer;
@@ -23,7 +24,7 @@ import com.jsyn.unitgen.UnitOscillator;
  * @author Phil Burk (C) 2010 Mobileer Inc
  * 
  */
-public class Synth extends JApplet
+public class Synth
 {
 	private static final long serialVersionUID = -2704222221111608377L;
 	private Synthesizer synth;
@@ -31,8 +32,7 @@ public class Synth extends JApplet
 	private LinearRamp lag;
 	private LineOut lineOut;
 
-        @Override
-	public void init()
+	Synth()
 	{
 		synth = JSyn.createSynthesizer();
 		
@@ -50,21 +50,11 @@ public class Synth extends JApplet
 		lag.input.setup( 0.0, 0.5, 1.0 );
 		lag.time.set(  0.2 );
 
-		// Arrange the faders in a stack.
-		setLayout( new GridLayout( 0, 1 ) );
-
-		ExponentialRangeModel amplitudeModel = PortModelFactory.createExponentialModel( lag.input );
-		RotaryTextController knob = new RotaryTextController( amplitudeModel, 5 );
-		JPanel knobPanel = new JPanel();
-		knobPanel.add( knob );
-		add( knobPanel );
 
 		osc.frequency.setup( 50.0, 300.0, 10000.0 );
-		add( PortControllerFactory.createExponentialPortSlider( osc.frequency ) );
-		validate();
+
 	}
 
-        @Override
 	public void start()
 	{
 		// Start synthesizer using default stereo output at 44100 Hz.
@@ -74,7 +64,6 @@ public class Synth extends JApplet
 		lineOut.start();
 	}
 
-        @Override
 	public void stop()
 	{
 		synth.stop();
@@ -83,11 +72,18 @@ public class Synth extends JApplet
 	/* Can be run as either an application or as an applet. */
 	public static void openSynth() 
 	{
-		Synth applet = new Synth();
-		JAppletFrame frame = new JAppletFrame( "SawFaders", applet );
-		frame.setSize( 440, 200 );
-		frame.setVisible( true );
-		frame.test();
+		Synth sYnth = new Synth();
+
+	}
+	public static void main(String[] args){
+		Synth s = new Synth(); 
+		s.start();
+		try{
+		TimeUnit.SECONDS.sleep(5);
+		}
+		catch(InterruptedException)
+		{}
+		s.stop();
 	}
 
 }

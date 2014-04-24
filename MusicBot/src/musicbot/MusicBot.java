@@ -22,12 +22,14 @@ public class MusicBot extends PircBot {
     @Override
     public void onMessage (String channel, String sender, String login, String
             hostname, String message) {
-        Synth synth = new Synth() ;
+
+
         if(message.equalsIgnoreCase(":start")) {
             String time = new java.util.Date().toString() ;
             sendMessage(channel, sender + ": The time is now " + time) ;
             
-            synth.openSynth() ;
+            Synth synth = new Synth() ;
+            synth.start() ;
             
         }
         else if(message.equalsIgnoreCase(":stop")) {
