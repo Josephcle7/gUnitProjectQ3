@@ -1,12 +1,11 @@
+package musicbot;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 
-package musicbot;
-import musicbot.Synth ;
-import org.jibble.pircbot.* ;
+import org.jibble.pircbot.PircBot;
 /**
  *
  * @author Josh
@@ -21,17 +20,18 @@ public class MusicBot extends PircBot {
     
     @Override
     public void onMessage (String channel, String sender, String login, String
-            hostname, String message) {
-        Synth synth = new Synth() ;
+            hostname, String message) { 
+        Synth synth1 = new Synth() ;
         if(message.equalsIgnoreCase(":start")) {
             String time = new java.util.Date().toString() ;
             sendMessage(channel, sender + ": The time is now " + time) ;
             
-            synth.openSynth() ;
+            synth1.openSynth() ;
             
         }
         else if(message.equalsIgnoreCase(":stop")) {
-            synth.stop() ;
+        	sendMessage(channel, "Attempting to stop");
+            synth1.stop();
             
 
         }

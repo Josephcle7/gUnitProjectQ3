@@ -6,7 +6,7 @@
 
 package musicbot;
 
-import org.jibble.pircbot.* ;
+
 
 /**
  *
