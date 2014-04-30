@@ -1,4 +1,4 @@
-package musicbot ;
+package musicbot;
 
 import java.awt.GridLayout;
 
@@ -6,7 +6,6 @@ import javax.swing.JApplet;
 import javax.swing.JPanel;
 
 import com.jsyn.JSyn;
-import com.jsyn.Synthesizer;
 import com.jsyn.swing.ExponentialRangeModel;
 import com.jsyn.swing.JAppletFrame;
 import com.jsyn.swing.PortControllerFactory;
@@ -26,7 +25,7 @@ import com.jsyn.unitgen.UnitOscillator;
 public class Synth
 {
 	private static final long serialVersionUID = -2704222221111608377L;
-	private Synthesizer synth;
+	private com.jsyn.Synthesizer synth;
 	private UnitOscillator osc;
 	private LinearRamp lag;
 	private LineOut lineOut;
@@ -61,7 +60,7 @@ public class Synth
 	public void run()
 	{
 		// Start synthesizer using default stereo output at 44100 Hz.
-		synth.start();
+        synth.start();
 		// We only need to start the LineOut. It will pull data from the
 		// oscillator.
 		lineOut.start();
@@ -71,6 +70,8 @@ public class Synth
 	public void stop()
 	{
 		synth.stop();
+		lineOut.stop();
+		System.exit(0);
 	}
 
 	/* Can be run as either an application or as an applet. */
