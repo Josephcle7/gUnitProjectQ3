@@ -27,16 +27,13 @@ public class MusicBot extends PircBot {
             String time = new java.util.Date().toString() ;
             sendMessage(channel, sender + ": The time is now " + time) ;
             
-            synth.start() ;
+            synth.openSynth() ;
             
         }
         else if(message.equalsIgnoreCase(":stop")) {
             synth.stop() ;
             
 
-        }
-        else if(message.equalsIgnoreCase(":run")) {
-            synth.run() ;
         }
         else if(message.equalsIgnoreCase(":time")) {
             sendMessage(channel, "hahahaha I won't tell you...") ;

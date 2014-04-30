@@ -23,7 +23,7 @@ import com.jsyn.unitgen.UnitOscillator;
  * @author Phil Burk (C) 2010 Mobileer Inc
  * 
  */
-public class Synth
+public class Synth extends JApplet
 {
 	private static final long serialVersionUID = -2704222221111608377L;
 	private Synthesizer synth;
@@ -31,8 +31,8 @@ public class Synth
 	private LinearRamp lag;
 	private LineOut lineOut;
 
-
-	public void start()
+        @Override
+	public void init()
 	{
 		synth = JSyn.createSynthesizer();
 		
@@ -50,15 +50,22 @@ public class Synth
 		lag.input.setup( 0.0, 0.5, 1.0 );
 		lag.time.set(  0.2 );
 
+		// Arrange the faders in a stack.
+		setLayout( new GridLayout( 0, 1 ) );
+
 		ExponentialRangeModel amplitudeModel = PortModelFactory.createExponentialModel( lag.input );
-		
+		RotaryTextController knob = new RotaryTextController( amplitudeModel, 5 );
+		JPanel knobPanel = new JPanel();
+		knobPanel.add( knob );
+		add( knobPanel );
 
 		osc.frequency.setup( 50.0, 300.0, 10000.0 );
-
+		add( PortControllerFactory.createExponentialPortSlider( osc.frequency ) );
+		validate();
 	}
 
-        
-	public void run()
+        @Override
+	public void start()
 	{
 		// Start synthesizer using default stereo output at 44100 Hz.
 		synth.start();
@@ -67,7 +74,7 @@ public class Synth
 		lineOut.start();
 	}
 
-
+        @Override
 	public void stop()
 	{
 		synth.stop();
@@ -77,7 +84,10 @@ public class Synth
 	public static void openSynth() 
 	{
 		Synth applet = new Synth();
-
+		JAppletFrame frame = new JAppletFrame( "SawFaders", applet );
+		frame.setSize( 440, 200 );
+		frame.setVisible( true );
+		frame.test();
 	}
 
 }
