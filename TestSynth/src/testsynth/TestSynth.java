@@ -5,7 +5,7 @@
  */
 
 package testsynth;
-import testsynth.Synth ;
+import testsynth.MySynth ;
 import org.jibble.pircbot.* ;
 /**
  *
@@ -15,7 +15,7 @@ public class TestSynth extends PircBot {
 
 
     public TestSynth() {
-        this.setName("CaseysMom") ;
+        this.setName("BoxBox") ;
         // TODO code application logic here
     }
     
@@ -24,14 +24,12 @@ public class TestSynth extends PircBot {
             hostname, String message) {
         
         
-        Synth musicBot = new Synth() ;
-        
         
         if(message.equalsIgnoreCase(":start")) {
             String time = new java.util.Date().toString() ;
             sendMessage(channel, sender + ": The time is now " + time) ;
             
-            musicBot.start() ;
+            MySynth.start() ;
             
             System.out.println("Starting...") ;
             
@@ -41,15 +39,15 @@ public class TestSynth extends PircBot {
         else if(message.equalsIgnoreCase(":stop")) {
             System.out.println("stopping...") ;
             
-            musicBot.quit() ;
+            MySynth.stop() ;
             
         
         }
         else if(message.equalsIgnoreCase(":increase")) {
-            musicBot.increase() ;
+            //musicBot.increase() ;
         }
         else if(message.equalsIgnoreCase(":run")) {
-            musicBot.run() ;
+            //musicBot.run() ;
             System.out.println("running...") ;
         }
         
