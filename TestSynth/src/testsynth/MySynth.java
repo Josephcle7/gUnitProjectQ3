@@ -67,8 +67,11 @@ public class MySynth
         public static void stop() {
             mySynth.quit() ;
         }
+        public static void increase() {
+            mySynth.increase1() ;
+        }
 
-        public void increase() {
+        public void increase1() {
             System.out.println("starting...") ;
             osc.frequency.set(880.0) ;
         }

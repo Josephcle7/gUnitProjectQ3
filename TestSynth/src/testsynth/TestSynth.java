@@ -44,7 +44,7 @@ public class TestSynth extends PircBot {
         
         }
         else if(message.equalsIgnoreCase(":increase")) {
-            //musicBot.increase() ;
+            MySynth.increase() ;
         }
         else if(message.equalsIgnoreCase(":run")) {
             //musicBot.run() ;
