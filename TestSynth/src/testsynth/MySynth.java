@@ -10,8 +10,10 @@ import com.jsyn.unitgen.* ;
 import com.jsyn.swing.* ;
 import java.util.concurrent.TimeUnit;
 
+import testsynth.Values ;
 
-public class MySynth
+
+public class MySynth extends Values
 {
 	private static final long serialVersionUID = -2704222221111608377L;
 	public LineOut lineOut;
@@ -33,8 +35,8 @@ public class MySynth
                 synth.add( filter = new FilterStateVariable() ) ;
                 synth.add( lineOut = new LineOut() ) ;
                 
-                osc.frequency.set(440.0);
-                osc.amplitude.set(0.4);
+                osc.frequency.set(getFreq());
+                osc.amplitude.set(getAmp());
                 
                 
                 System.out.println("added") ;
@@ -70,12 +72,19 @@ public class MySynth
         public static void increase() {
             mySynth.increase1() ;
         }
+        
+        public static void decrease() {
+            mySynth.decrease1() ;
+        }
 
         public void increase1() {
             System.out.println("starting...") ;
-            osc.frequency.set(880.0) ;
+            osc.frequency.set(increaseFreq()) ;
         }
         
+        public void decrease1() {
+            osc.frequency.set(decreaseFreq()) ;
+        }
         
 	public void run()
 	{
