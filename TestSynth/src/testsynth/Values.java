@@ -14,6 +14,7 @@ public class Values implements GetValues {
     
     public int freq = 440 ;
     public double amp = 0.5 ;
+    public long cutoffFreq = 10000 ;
     
     
     public int increaseFreq() {
@@ -43,5 +44,15 @@ public class Values implements GetValues {
     
     public double getAmp() {
         return amp ;
+    }
+    
+    public long increaseFilterCutoff() {
+        cutoffFreq = cutoffFreq + 500 ;
+        return cutoffFreq ;
+    }
+    
+    public long decreaseFilterCutoff() {
+        cutoffFreq = cutoffFreq - 500 ;
+        return cutoffFreq ;
     }
 }

@@ -18,7 +18,7 @@ public class MySynth extends Values
 	private static final long serialVersionUID = -2704222221111608377L;
 	public LineOut lineOut;
         public SawtoothOscillatorBL osc;
-        public FilterStateVariable filter ;
+        public FilterLowPass lpFilter ;
         
         static MySynth mySynth ;
         
@@ -32,8 +32,9 @@ public class MySynth extends Values
 		
 		// Add a tone generator.
 		synth.add( osc = new SawtoothOscillatorBL() ) ;
-                synth.add( filter = new FilterStateVariable() ) ;
+                synth.add( lpFilter = new FilterLowPass() ) ;
                 synth.add( lineOut = new LineOut() ) ;
+                
                 
                 osc.frequency.set(getFreq());
                 osc.amplitude.set(getAmp());
@@ -41,10 +42,10 @@ public class MySynth extends Values
                 
                 System.out.println("added") ;
                 
-                osc.output.connect( filter.input ) ;
+                osc.output.connect( lpFilter.input ) ;
                 System.out.println("filter connected") ;
-                filter.output.connect(0, lineOut.input, 0);
-                filter.output.connect(0, lineOut.input, 1);
+                lpFilter.output.connect(0, lineOut.input, 0);
+                lpFilter.output.connect(0, lineOut.input, 1);
                 
                 System.out.println("connected") ;
                 
@@ -76,6 +77,14 @@ public class MySynth extends Values
         public static void decrease() {
             mySynth.decrease1() ;
         }
+        
+        public static void inFilterCut() {
+            mySynth.increaseCutoffFreq() ;
+        }
+        
+        public static void deFilterCut() {
+            mySynth.decreaseCutoffFreq() ;
+        }
 
         public void increase1() {
             System.out.println("starting...") ;
@@ -84,6 +93,15 @@ public class MySynth extends Values
         
         public void decrease1() {
             osc.frequency.set(decreaseFreq()) ;
+        }
+        
+        public void increaseCutoffFreq() {
+            
+            lpFilter.frequency.set(increaseFilterCutoff()) ;
+        }
+        
+        public void decreaseCutoffFreq() {
+            lpFilter.frequency.set(decreaseFilterCutoff() ) ;
         }
         
 	public void run()
@@ -110,7 +128,12 @@ public class MySynth extends Values
                 
             System.out.println("stop done") ;
 	}
-
+        
+        public void filtCutoffIncrease() {
+            
+        }
+        
+        
 	/* Can be run as either an application or as an applet. */
 	public static void openSynth() 
 	{

@@ -23,4 +23,8 @@ public interface GetValues {
     public int getFreq() ;
     
     public double getAmp() ;
+    
+    public long increaseFilterCutoff() ;
+    
+    public long decreaseFilterCutoff() ;
 }
