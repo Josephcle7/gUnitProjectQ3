@@ -27,4 +27,5 @@ public interface GetValues {
     public long increaseFilterCutoff() ;
     
     public long decreaseFilterCutoff() ;
+    
 }

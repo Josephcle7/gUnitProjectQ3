@@ -1,16 +1,12 @@
 package testsynth ;
 
-import java.awt.GridLayout;
-
-import javax.swing.JApplet;
-import javax.swing.JPanel;
 
 import com.jsyn.* ;
 import com.jsyn.unitgen.* ;
-import com.jsyn.swing.* ;
+
 import java.util.concurrent.TimeUnit;
 
-import testsynth.Values ;
+//import testsynth.Values ;
 
 
 public class MySynth extends Values
@@ -78,6 +74,15 @@ public class MySynth extends Values
             mySynth.decrease1() ;
         }
         
+        public static void startFilter() {
+            mySynth.filterOn() ;
+            
+        }
+        
+        public static void stopFilter() {
+            mySynth.filterOff() ;
+        }
+        
         public static void inFilterCut() {
             mySynth.increaseCutoffFreq() ;
         }
@@ -102,6 +107,14 @@ public class MySynth extends Values
         
         public void decreaseCutoffFreq() {
             lpFilter.frequency.set(decreaseFilterCutoff() ) ;
+        }
+        
+        public void filterOn() {
+            lpFilter.amplitude.set(1.0);
+        
+        }
+        public void filterOff() {
+            lpFilter.amplitude.set(0.0) ;
         }
         
 	public void run()

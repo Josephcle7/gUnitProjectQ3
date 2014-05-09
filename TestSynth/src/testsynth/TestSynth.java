@@ -50,6 +50,14 @@ public class TestSynth extends PircBot {
         else if(message.equalsIgnoreCase(":cutoffDecrease")) {
             MySynth.deFilterCut() ;
         }
+        
+        else if(message.equalsIgnoreCase(":filterOn")) {
+            MySynth.startFilter() ;
+        }
+        
+        else if(message.equalsIgnoreCase(":filterOff")) {
+            MySynth.stopFilter() ;
+        }
         else if(message.equalsIgnoreCase(":Fincrease")) {
             MySynth.increase() ;
         }
