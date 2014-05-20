@@ -40,8 +40,7 @@ public class TestSynth extends PircBot {
             System.out.println("stopping...") ;
             
             MySynth.stop() ;
-            
-        
+           
         }
         
         else if(message.equalsIgnoreCase(":cutoffIncrease") ) {
