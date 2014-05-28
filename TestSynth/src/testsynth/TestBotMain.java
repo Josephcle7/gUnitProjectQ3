@@ -7,14 +7,24 @@
 package testsynth;
 
 import org.jibble.pircbot.* ;
+import javax.swing.JApplet;
+import javax.swing.JPanel;
 
 /**
  *
  * @author Josh
  */
-public class TestBotMain {
+public class TestBotMain extends JApplet{
     
-    public static void main(String[] args) throws Exception {
+    public void start() {
+        try {
+            mainFunction() ;
+        } catch (Exception e) {
+            
+        }
+    }
+    
+    public static void mainFunction() throws Exception {
         
         TestSynth bot = new TestSynth() ;
         

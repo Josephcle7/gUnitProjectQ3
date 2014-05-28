@@ -13,9 +13,10 @@ import org.jibble.pircbot.* ;
  */
 public class TestSynth extends PircBot {
 
-
+    StringReader send = new StringReader() ;
+    
     public TestSynth() {
-        this.setName("BoxBox") ;
+        this.setName("BoxBox2") ;
         // TODO code application logic here
     }
     
@@ -23,8 +24,18 @@ public class TestSynth extends PircBot {
     public void onMessage (String channel, String sender, String login, String
             hostname, String message) {
         
+
+        String input = message ;
+        String[] splitString = input.split(":|\\(|\\)") ;
+        send.readString(splitString) ;
         
         
+        
+        
+        
+        
+        
+        /*
         if(message.equalsIgnoreCase(":start")) {
             String time = new java.util.Date().toString() ;
             sendMessage(channel, sender + ": The time is now " + time) ;
@@ -74,6 +85,6 @@ public class TestSynth extends PircBot {
         
         else {
             sendMessage(channel, "THIS IS NOT THE TIME TO USE THAT YET") ;
-        }
+        }*/
     }
 }

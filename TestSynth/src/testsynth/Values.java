@@ -12,19 +12,23 @@ package testsynth;
  */
 public class Values implements GetValues {
     
-    public int freq = 440 ;
+    public int freq = 110 ;
     public double amp = 0.5 ;
     public long cutoffFreq = 10000 ;
     
     
     public int increaseFreq() {
-        freq = freq + 10 ;
+        //if(freq < 22000)
+        freq = (freq*3)/2 ;
         return freq ;
         
     }
     
     public int decreaseFreq() {
-        freq = freq - 10 ;
+        if(freq > 110) {
+            freq = (freq*2)/3 ;
+            return freq ;
+        }
         return freq ;
     }
     
