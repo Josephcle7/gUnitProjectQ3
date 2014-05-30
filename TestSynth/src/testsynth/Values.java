@@ -18,10 +18,11 @@ public class Values implements GetValues {
     
     
     public int increaseFreq() {
-        //if(freq < 22000)
-        freq = (freq*3)/2 ;
-        return freq ;
-        
+        if(freq < 22000) {
+            freq = (freq*3)/2 ;
+            return freq ;
+        }
+        return freq ;        
     }
     
     public int decreaseFreq() {
@@ -33,12 +34,18 @@ public class Values implements GetValues {
     }
     
     public double increaseAmp() {
-        amp = amp + 0.1 ;
+        if(amp < 10.0) {
+            amp = amp + 0.1 ;
+            return amp ;
+        }
         return amp ;
     }
     
     public double decreaseAmp() {
-        amp = amp - 0.1 ;
+        if(amp > 0.1) {
+            amp = amp - 0.1 ;
+            return amp ;
+        }
         return amp ;
     }
     
@@ -46,17 +53,24 @@ public class Values implements GetValues {
         return freq ;
     }
     
+    
     public double getAmp() {
         return amp ;
     }
     
     public long increaseFilterCutoff() {
-        cutoffFreq = cutoffFreq + 500 ;
+        if(cutoffFreq < 10000) {
+            cutoffFreq = cutoffFreq + 500 ;
+            return cutoffFreq ;
+        }
         return cutoffFreq ;
     }
     
     public long decreaseFilterCutoff() {
-        cutoffFreq = cutoffFreq - 500 ;
+        if(cutoffFreq > 10) {
+            cutoffFreq = cutoffFreq - 500 ;
+            return cutoffFreq ;
+        }
         return cutoffFreq ;
     }
 }

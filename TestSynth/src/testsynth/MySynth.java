@@ -92,7 +92,6 @@ public class MySynth extends Values
         }
 
         public void increase1() {
-            System.out.println("starting...") ;
             osc.frequency.set(increaseFreq()) ;
         }
         
@@ -154,7 +153,7 @@ public class MySynth extends Values
 
 	}
         
-        public static void main(String[] args) {
+        /*public static void main(String[] args) {
             
             MySynth test = new MySynth() ;
             try {
@@ -186,6 +185,6 @@ public class MySynth extends Values
             
             
             
-        }
+        }*/
 
 }

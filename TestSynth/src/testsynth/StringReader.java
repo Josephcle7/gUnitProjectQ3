@@ -26,9 +26,10 @@ public class StringReader {
             System.out.println(s) ;
             instructions.offer(s) ;
         }
-        for(Object s: instructions) {
+        /*for(Object s: instructions) {
             System.out.println(s) ;
-        }
+        }*/
+        
         while(instructions.element().equals(""))
             instructions.remove() ;
         
@@ -37,10 +38,7 @@ public class StringReader {
         
         if(instructions.element().equals("on")) {
             instructions.remove() ;
-            System.out.println("yooo") ;
             MySynth.start() ;
-            System.out.println("Synth started") ;
-            //instructions.remove() ;
                
         }
         
@@ -80,19 +78,17 @@ public class StringReader {
                 MySynth.stopFilter() ;
             }
             
-            else if(instructions.element().equals("filter")) {
-                instructions.remove() ;
                 
-                if(instructions.element().equals("increase")) {
-                    instructions.remove() ;
-                    MySynth.inFilterCut() ;
-                }
-            
-                else if(instructions.element().equals("decrease")) {
-                    instructions.remove() ;
-                    MySynth.deFilterCut() ;
-                }
+            else if(instructions.element().equals("increase")) {
+                instructions.remove() ;
+                MySynth.inFilterCut() ;
             }
+
+            else if(instructions.element().equals("decrease")) {
+                instructions.remove() ;
+                MySynth.deFilterCut() ;
+            }
+        
             
             else if(instructions.element().equals("resonance")) {
                 instructions.remove() ;

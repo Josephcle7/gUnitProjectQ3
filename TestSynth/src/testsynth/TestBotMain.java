@@ -16,7 +16,7 @@ import javax.swing.JPanel;
  */
 public class TestBotMain extends JApplet{
     
-    public void start() {
+    public void init() {
         try {
             mainFunction() ;
         } catch (Exception e) {
@@ -34,5 +34,13 @@ public class TestBotMain extends JApplet{
         
         
         
+    }
+    
+    public static void main(String[] args) {
+        try {
+            mainFunction() ;
+        } catch (Exception e) {
+            
+        }
     }
 }
