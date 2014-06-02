@@ -28,4 +28,10 @@ public interface GetValues {
     
     public long decreaseFilterCutoff() ;
     
+    public double decreaseRes () ;
+    
+    public double increaseRes() ;
+    
+    public double getRes() ;
+    
 }

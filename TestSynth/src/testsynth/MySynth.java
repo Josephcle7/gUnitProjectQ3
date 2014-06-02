@@ -31,6 +31,9 @@ public class MySynth extends Values
                 synth.add( lpFilter = new FilterLowPass() ) ;
                 synth.add( lineOut = new LineOut() ) ;
                 
+                osc.output.connect(0, lineOut.input, 0) ;
+                osc.output.connect(0, lineOut.input, 1) ;
+                
                 
                 osc.frequency.set(getFreq());
                 osc.amplitude.set(getAmp());
@@ -38,10 +41,7 @@ public class MySynth extends Values
                 
                 System.out.println("added") ;
                 
-                osc.output.connect( lpFilter.input ) ;
-                System.out.println("filter connected") ;
-                lpFilter.output.connect(0, lineOut.input, 0);
-                lpFilter.output.connect(0, lineOut.input, 1);
+                
                 
                 System.out.println("connected") ;
                 
@@ -90,6 +90,12 @@ public class MySynth extends Values
         public static void deFilterCut() {
             mySynth.decreaseCutoffFreq() ;
         }
+        public static void inRes() {
+            mySynth.increaseResonance() ;
+        }
+        public static void deRes() {
+            mySynth.decreaseResonance() ;
+        }
 
         public void increase1() {
             osc.frequency.set(increaseFreq()) ;
@@ -108,12 +114,29 @@ public class MySynth extends Values
             lpFilter.frequency.set(decreaseFilterCutoff() ) ;
         }
         
+        public void increaseResonance() {
+            lpFilter.Q.set(increaseRes() ) ;
+        }
+        public void decreaseResonance() {
+            lpFilter.Q.set(decreaseRes() ) ;
+        }
         public void filterOn() {
-            lpFilter.amplitude.set(1.0);
+            osc.output.connect( lpFilter.input ) ;
+            System.out.println("filter connected") ;
+            lpFilter.frequency.set(getCutoffFreq()) ;
+            lpFilter.Q.set(getRes() );
+            lpFilter.output.connect(0, lineOut.input, 0);
+            lpFilter.output.connect(0, lineOut.input, 1);
         
         }
         public void filterOff() {
-            lpFilter.amplitude.set(0.0) ;
+            osc.output.disconnect( lpFilter.input ) ;
+            System.out.println("filter connected") ;
+            lpFilter.output.disconnect(0, lineOut.input, 0);
+            lpFilter.output.disconnect(0, lineOut.input, 1);
+            
+            osc.output.connect(0, lineOut.input, 0) ;
+            osc.output.connect(0, lineOut.input, 1) ;
         }
         
 	public void run()

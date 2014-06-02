@@ -23,7 +23,7 @@ public class StringReader {
 
         
         for(String s: commands) {
-            System.out.println(s) ;
+            //System.out.println(s) ;
             instructions.offer(s) ;
         }
         /*for(Object s: instructions) {
@@ -33,7 +33,7 @@ public class StringReader {
         while(instructions.element().equals(""))
             instructions.remove() ;
         
-        System.out.println(instructions.element());
+        //System.out.println(instructions.element());
               
         
         if(instructions.element().equals("on")) {
@@ -78,15 +78,18 @@ public class StringReader {
                 MySynth.stopFilter() ;
             }
             
+            else if(instructions.element().equals("cutoff")) {   
+                instructions.remove() ;
                 
-            else if(instructions.element().equals("increase")) {
-                instructions.remove() ;
-                MySynth.inFilterCut() ;
-            }
+                if (instructions.element().equals("increase")) {
+                    instructions.remove() ;
+                    MySynth.inFilterCut() ;
+                }
 
-            else if(instructions.element().equals("decrease")) {
-                instructions.remove() ;
-                MySynth.deFilterCut() ;
+                else if(instructions.element().equals("decrease")) {
+                    instructions.remove() ;
+                    MySynth.deFilterCut() ;
+                }
             }
         
             
@@ -94,10 +97,13 @@ public class StringReader {
                 instructions.remove() ;
                 
                 if(instructions.element().equals("increase")) {
+                    instructions.remove() ;
+                    MySynth.inRes() ;
                     
                 }
                 else if(instructions.element().equals("decrease")) {
-                    
+                    instructions.remove() ;
+                    MySynth.deRes() ;
                 }
             }
             

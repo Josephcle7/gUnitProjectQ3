@@ -14,7 +14,9 @@ public class Values implements GetValues {
     
     public int freq = 110 ;
     public double amp = 0.5 ;
-    public long cutoffFreq = 10000 ;
+    public long cutoffFreq = 1000 ;
+    public double resonance = 1.0 ;
+
     
     
     public int increaseFreq() {
@@ -58,19 +60,46 @@ public class Values implements GetValues {
         return amp ;
     }
     
+    public long getCutoffFreq() {
+        return cutoffFreq ;
+    }
+    
     public long increaseFilterCutoff() {
         if(cutoffFreq < 10000) {
-            cutoffFreq = cutoffFreq + 500 ;
+            
+            cutoffFreq = (cutoffFreq * 3) / 2 ;
+            System.out.println(cutoffFreq) ;
             return cutoffFreq ;
         }
         return cutoffFreq ;
     }
     
     public long decreaseFilterCutoff() {
-        if(cutoffFreq > 10) {
-            cutoffFreq = cutoffFreq - 500 ;
+        if(cutoffFreq > 0) {
+            
+            cutoffFreq = (cutoffFreq * 2) / 3 ;
+            System.out.println(cutoffFreq) ;
             return cutoffFreq ;
         }
         return cutoffFreq ;
+    }
+    
+    public double getRes() {
+        return resonance ;
+    }
+    public double increaseRes() {
+        if(resonance < 4.0) {
+            resonance = resonance + 0.5 ;
+            return resonance ;
+        }
+        return resonance ;
+    }
+    
+    public double decreaseRes() {
+        if(resonance > 0.0) {
+            resonance = resonance - 0.5 ;
+            return resonance ;
+        }
+        return resonance ;
     }
 }
