@@ -74,6 +74,14 @@ public class MySynth extends Values
             mySynth.decrease1() ;
         }
         
+        public static void inAmp() {
+            mySynth.increaseAmp() ;
+        }
+        
+        public static void deAmp() {
+            mySynth.decreaseAmp() ;
+        }
+        
         public static void startFilter() {
             mySynth.filterOn() ;
             
@@ -105,6 +113,14 @@ public class MySynth extends Values
             osc.frequency.set(decreaseFreq()) ;
         }
         
+        public void increaseAmp() {
+            osc.amplitude.set(increaseAmplitude()) ;
+        }
+        
+        public void decreaseAmp() {
+            osc.amplitude.set(decreaseAmplitude()) ;
+        }
+        
         public void increaseCutoffFreq() {
             
             lpFilter.frequency.set(increaseFilterCutoff()) ;
@@ -124,6 +140,7 @@ public class MySynth extends Values
             osc.output.connect( lpFilter.input ) ;
             System.out.println("filter connected") ;
             lpFilter.frequency.set(getCutoffFreq()) ;
+            lpFilter.amplitude.set(1.0) ;
             lpFilter.Q.set(getRes() );
             lpFilter.output.connect(0, lineOut.input, 0);
             lpFilter.output.connect(0, lineOut.input, 1);

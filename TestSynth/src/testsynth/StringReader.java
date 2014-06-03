@@ -11,6 +11,7 @@ package testsynth;
  * @author Josh
  */
 import java.util.LinkedList;
+import java.util.NoSuchElementException;
 import java.util.Queue;
 
 public class StringReader {
@@ -18,7 +19,7 @@ public class StringReader {
     Queue<String> instructions = new LinkedList<String>() ;
 
 
-    public void readString(String[] commands) {
+    public void readString(String botName, String[] commands) {
         
 
         
@@ -34,79 +35,123 @@ public class StringReader {
             instructions.remove() ;
         
         //System.out.println(instructions.element());
-              
         
-        if(instructions.element().equals("on")) {
+        if(instructions.element().equals(botName)) {
             instructions.remove() ;
-            MySynth.start() ;
-               
-        }
         
-        
-        else if(instructions.element().equals("off")) {
-            instructions.remove() ;
-            MySynth.stop() ;
-                
-        }
-        
-        else if(instructions.element().equals("freq")) {
-            instructions.remove() ;
-            
-            if(instructions.element().equals("increase")) {
-                instructions.remove() ;
-                MySynth.increase() ;
-                //instructions.remove() ;
-            }
-            
-            else if(instructions.element().equals("decrease")) {
-                instructions.remove() ;
-                MySynth.decrease() ;
-            }
-            
-        }
-        
-        else if(instructions.element().equals("filter")) {
-            instructions.remove() ;
-            
             if(instructions.element().equals("on")) {
                 instructions.remove() ;
-                MySynth.startFilter() ;
+                MySynth.start() ;
+
             }
-            
+
+
             else if(instructions.element().equals("off")) {
                 instructions.remove() ;
-                MySynth.stopFilter() ;
+                MySynth.stop() ;
+
             }
-            
-            else if(instructions.element().equals("cutoff")) {   
+
+            else if(instructions.element().equals("freq")) {
                 instructions.remove() ;
                 
-                if (instructions.element().equals("increase")) {
+                
+
+                if(instructions.element().equals("increase")) {
                     instructions.remove() ;
-                    MySynth.inFilterCut() ;
+                    
+                    int n ;
+                    String iterator ;
+
+                    try {
+                        iterator = instructions.remove() ;
+                    } catch (NoSuchElementException e) {
+                        iterator = "1" ;
+                    }
+                
+                    n = Integer.parseInt(iterator) ;
+                    
+                    for(int i = 0; i < n; i++) 
+                        MySynth.increase() ;
                 }
 
                 else if(instructions.element().equals("decrease")) {
                     instructions.remove() ;
-                    MySynth.deFilterCut() ;
-                }
-            }
-        
-            
-            else if(instructions.element().equals("resonance")) {
-                instructions.remove() ;
+                    
+                    int n ;
+                    String iterator ;
+
+                    try {
+                        iterator = instructions.remove() ;
+                    } catch (NoSuchElementException e) {
+                        iterator = "1" ;
+                    }
                 
+                    n = Integer.parseInt(iterator) ;
+                    
+                    for(int i = 0; i < n; i++) 
+                        MySynth.decrease() ;
+                    
+                }
+
+            }
+
+            else if(instructions.element().equals("amp")) {
+                instructions.remove() ;
+
                 if(instructions.element().equals("increase")) {
                     instructions.remove() ;
-                    MySynth.inRes() ;
-                    
+                    MySynth.inAmp() ;
                 }
                 else if(instructions.element().equals("decrease")) {
                     instructions.remove() ;
-                    MySynth.deRes() ;
+                    MySynth.deAmp() ;
                 }
             }
-            
+
+            else if(instructions.element().equals("filter")) {
+                instructions.remove() ;
+
+                if(instructions.element().equals("on")) {
+                    instructions.remove() ;
+                    MySynth.startFilter() ;
+                }
+
+                else if(instructions.element().equals("off")) {
+                    instructions.remove() ;
+                    MySynth.stopFilter() ;
+                }
+
+                else if(instructions.element().equals("cutoff")) {   
+                    instructions.remove() ;
+
+                    if (instructions.element().equals("increase")) {
+                        instructions.remove() ;
+                        MySynth.inFilterCut() ;
+                    }
+
+                    else if(instructions.element().equals("decrease")) {
+                        instructions.remove() ;
+                        MySynth.deFilterCut() ;
+                    }
+                }
+
+
+                else if(instructions.element().equals("resonance")) {
+                    instructions.remove() ;
+
+                    if(instructions.element().equals("increase")) {
+                        instructions.remove() ;
+                        MySynth.inRes() ;
+
+                    }
+                    else if(instructions.element().equals("decrease")) {
+                        instructions.remove() ;
+                        MySynth.deRes() ;
+                    }
+                }
+
+            }
             
         }
         else {

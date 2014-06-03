@@ -16,18 +16,23 @@ public class TestSynth extends PircBot {
     StringReader send = new StringReader() ;
     
     public TestSynth() {
-        this.setName("BoxBox2") ;
+        this.setName("BoxBox") ;
         // TODO code application logic here
+
     }
     
     @Override
     public void onMessage (String channel, String sender, String login, String
             hostname, String message) {
         
+        System.out.println(sender) ;
+        if(sender.equalsIgnoreCase("pipecork")) {
+            sendMessage(channel, "pipecork, you are a biter") ;
+        }
 
         String input = message ;
         String[] splitString = input.split(":|\\(|\\)") ;
-        send.readString(splitString) ;
+        send.readString(this.getName(), splitString) ;
         
         
         

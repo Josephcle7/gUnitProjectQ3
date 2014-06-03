@@ -16,9 +16,9 @@ public interface GetValues {
     
     public int decreaseFreq() ;
     
-    public double increaseAmp() ;
+    public double increaseAmplitude() ;
     
-    public double decreaseAmp() ;
+    public double decreaseAmplitude() ;
     
     public int getFreq() ;
     

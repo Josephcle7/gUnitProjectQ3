@@ -28,28 +28,13 @@ public class Values implements GetValues {
     }
     
     public int decreaseFreq() {
-        if(freq > 110) {
+        if(freq > 0) {
             freq = (freq*2)/3 ;
             return freq ;
         }
         return freq ;
     }
     
-    public double increaseAmp() {
-        if(amp < 10.0) {
-            amp = amp + 0.1 ;
-            return amp ;
-        }
-        return amp ;
-    }
-    
-    public double decreaseAmp() {
-        if(amp > 0.1) {
-            amp = amp - 0.1 ;
-            return amp ;
-        }
-        return amp ;
-    }
     
     public int getFreq() {
         return freq ;
@@ -57,6 +42,22 @@ public class Values implements GetValues {
     
     
     public double getAmp() {
+        return amp ;
+    }
+    
+    public double increaseAmplitude() {
+        if(amp <= 1.0) {
+            amp = amp + 0.1 ;
+            return amp ;
+        }
+        return amp ;
+    }
+    
+    public double decreaseAmplitude() {
+        if(amp > 0.0) {
+            amp = amp - 0.1 ;
+            return amp ;
+        }
         return amp ;
     }
     
@@ -68,7 +69,6 @@ public class Values implements GetValues {
         if(cutoffFreq < 10000) {
             
             cutoffFreq = (cutoffFreq * 3) / 2 ;
-            System.out.println(cutoffFreq) ;
             return cutoffFreq ;
         }
         return cutoffFreq ;
@@ -78,7 +78,6 @@ public class Values implements GetValues {
         if(cutoffFreq > 0) {
             
             cutoffFreq = (cutoffFreq * 2) / 3 ;
-            System.out.println(cutoffFreq) ;
             return cutoffFreq ;
         }
         return cutoffFreq ;
@@ -88,16 +87,16 @@ public class Values implements GetValues {
         return resonance ;
     }
     public double increaseRes() {
-        if(resonance < 4.0) {
-            resonance = resonance + 0.5 ;
-            return resonance ;
-        }
+        resonance = resonance + 0.5 ;
+        System.out.println(resonance) ;
         return resonance ;
+
     }
     
     public double decreaseRes() {
         if(resonance > 0.0) {
             resonance = resonance - 0.5 ;
+            System.out.println(resonance) ;
             return resonance ;
         }
         return resonance ;
