@@ -36,7 +36,7 @@ public class StringReader {
         
         //System.out.println(instructions.element());
         
-        if(instructions.element().equals(botName)) {
+        if(botName.equalsIgnoreCase(instructions.element())) {
             instructions.remove() ;
         
             if(instructions.element().equals("on")) {
