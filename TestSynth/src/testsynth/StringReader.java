@@ -17,7 +17,7 @@ import java.util.Queue;
 public class StringReader {
     
     Queue<String> instructions = new LinkedList<String>() ;
-
+    private int latch = 0 ;
 
     public void readString(String botName, String[] commands) {
         
@@ -40,15 +40,24 @@ public class StringReader {
             instructions.remove() ;
         
             if(instructions.element().equals("on")) {
-                instructions.remove() ;
-                MySynth.start() ;
+                if(latch == 0) {
+                    instructions.remove() ;
+                    latch = 1 ;
+                    MySynth.start() ;
+                } else 
+                    instructions.remove() ;
+                
 
             }
 
 
             else if(instructions.element().equals("off")) {
-                instructions.remove() ;
-                MySynth.stop() ;
+                if(latch == 1) {
+                    instructions.remove() ;
+                    latch = 0 ;
+                    MySynth.stop() ;
+                } else
+                    instructions.remove() ;
 
             }
 
